@@ -1,0 +1,63 @@
+---
+title: "Lab 4"
+author: "Alice Zheng"
+output: html_document
+---
+```{r}
+library(tidyverse)
+library(plotly)
+library(DT)
+SNPs<- read.table("23andMe_complete.txt", header = TRUE, sep = "\t")
+```
+
+### Exercise 1
+```{r}
+p<-ggplot(data = SNPs) +
+  geom_bar(mapping = aes(x = chromosome), fill = '#66CCFF')
+p + ggtitle("Total SNPs for each chromosome") + 
+  xlab("Chromosome") +
+  ylab("Total number of SNPs")
+```
+
+### Exercise 2
+```{r}
+mycolor <-c("AA"='#FF9999', "AC"='#FF9999', "AG"='#FF9999', "AT"='#FF9999', "CC"='#FF9999', "CG"='#FF9999', "CT"='#FF9999', "GG"='#FF9999', "GT"='#FF9999', "TT"='#FF9999', "A"='#9999FF', "C"='#9999FF', "G"='#9999FF', "T"='#9999FF', "I"='#66CC99', "II"='#66CC99', "DI"='#66CC99', "DD"='#66CC99', "D"='#66CC99', "--"='#FFFF99')
+p<-ggplot(data = SNPs) + 
+  geom_bar(mapping = aes(x = chromosome, fill = genotype))
+p + ggtitle("Total SNPs for each chromosome") +
+  xlab("Chromosome") +
+  ylab("Total number of SNPs") +
+  theme(axis.title.x = element_text(face="bold")) +
+  theme(axis.title.y = element_text(face="bold")) +
+  scale_fill_manual(values=c(mycolor))
+```
+
+### Exercise 3
+![Genotype counts per chromosome](Lab3Ex5.png)
+
+### Exercise 4
+```{r}
+p<-ggplot(data = SNPs) + 
+  geom_bar(mapping = aes(x = chromosome, fill = genotype), position = "dodge") +
+  facet_wrap(~genotype, ncol = 2)
+p + ggtitle("Total SNPs for each genotype") +
+  xlab("Genotype") +
+  ylab("Total number of SNPs") +
+  theme(axis.title.x = element_text(face="bold")) +
+  theme(axis.title.y = element_text(face="bold")) 
+```
+
+### Exercise 5
+```{r}
+p<-ggplot(data = SNPs) + 
+  geom_bar(mapping = aes(x = chromosome, fill = genotype), position = "dodge") +
+  facet_wrap(~genotype, ncol = 2)
+ggplotly(p)
+```
+
+### Exercise 6
+```{r}
+Ytable <-subset(SNPs, chromosome == 'Y')
+datatable(Ytable)
+```
+

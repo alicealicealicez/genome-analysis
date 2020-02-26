@@ -1,0 +1,118 @@
+---
+title: "Lab5"
+author: "Alice Zheng"
+output: html_document
+---
+
+```{r, eval=FALSE}
+download.file(url="https://ndownloader.figshare.com/files/2292169",
+              destfile = "data/portal_data_joined.csv")
+```
+
+```{r}
+library(tidyverse)
+surveys <- read_csv("data/portal_data_joined.csv")
+SNPs <- read_tsv("data/23andMe_complete.txt", skip = 14, col_types = 
+                   cols(chromosome = col_factor()))
+```
+
+### Challenge 1 
+```{r}
+surveys %>% 
+  filter(year < 1995) %>% 
+  select(year, sex, weight)
+```
+
+### Challenge 2
+```{r}
+surveys_hindfoothalf <- surveys %>% 
+  filter(!is.na(hindfoot_length)) %>% 
+  mutate(hindfoot_half = hindfoot_length/2) %>% 
+  filter((hindfoot_half)<30) %>% 
+  select(species_id, hindfoot_half)
+surveys_hindfoothalf 
+```
+
+### Challenge 3
+```{r}
+surveys %>% 
+  count(plot_type)
+```
+
+### Challenge 4
+```{r}
+surveys %>% 
+  filter(!is.na(hindfoot_length)) %>% 
+  group_by(species_id) %>% 
+  summarize(mean_hindfoot_length = mean(hindfoot_length),
+            min_hindfoot_length = min(hindfoot_length),
+            max_hindfoot_length = max(hindfoot_length),
+            n = n()
+  )
+```
+
+### Challenge 5
+```{r}
+surveys %>% 
+  filter(!is.na(weight)) %>% 
+  group_by(year) %>%
+  filter(weight == max(weight)) %>% 
+  select(species, year, genus, weight) %>% 
+  arrange(year)
+```
+
+### Exercise 1
+```{r}
+select(SNPs, position, genotype)
+```
+
+### Exercise 2
+```{r}
+SNPs %>% 
+  filter(chromosome == 'MT') %>% 
+  filter(genotype != 'A') %>% 
+  filter(genotype != 'T')
+```
+
+### Exercise 3
+```{r}
+SNPs %>% 
+  filter(!is.na(position)) %>% 
+  group_by(chromosome) %>% 
+  summarise(min_position = min(position),
+            max_position = max(position),
+            count = n()
+            )
+```
+
+### Exercise 4
+```{r}
+SNPs %>% 
+  filter(!is.na(position)) %>% 
+  group_by(chromosome) %>% 
+  summarise(min_position = min(position),
+            max_position = max(position),
+            count = n()
+            ) %>% 
+  mutate(density_SNPs = (max_position - min_position) / n())
+```
+
+### Exercise 5
+```{r}
+SNPs_bydensity <- SNPs %>% 
+  filter(!is.na(position)) %>% 
+  group_by(chromosome) %>% 
+  summarise(min_position = min(position),
+            max_position = max(position),
+            count = n()
+            ) %>% 
+  mutate(density_SNPs = (max_position - min_position) / n()) %>% 
+  arrange(density_SNPs)
+SNPs_bydensity
+```
+
+### Exercise 6
+```{r}
+write_csv(SNPs_bydensity, path = "data/SNPs_bydensity.csv")
+```
+

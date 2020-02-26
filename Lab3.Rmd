@@ -1,0 +1,55 @@
+---
+title: "Lab 3"
+author: "Alice Zheng"
+output: html_document
+---
+```{r}
+library(tidyverse)
+SNPs<- read.table("23andMe_complete.txt", header = TRUE, sep = "\t")
+```
+
+### Exercise 1
+```{r}
+p<-ggplot(data = SNPs) +
+  geom_bar(mapping = aes(x = chromosome))
+p
+```
+
+### Exercise 2
+```{r}
+SNPs$chromosome = ordered(SNPs$chromosome, levels=c(seq(1, 22), "X", "Y", "MT"))
+p<-ggplot(data = SNPs) +
+  geom_bar(mapping = aes(x = chromosome))
+p
+```
+
+### Exercise 3
+```{r}
+p<-ggplot(data = SNPs) + 
+  geom_bar(mapping = aes(x = chromosome, fill = genotype))
+p
+```
+
+### Exercise 4
+```{r}
+p<-ggplot(data = SNPs) + 
+  geom_bar(mapping = aes(x = chromosome, fill = genotype), position = "fill")
+p
+```
+
+### Exercise 5
+```{r}
+p<-ggplot(data = SNPs) + 
+  geom_bar(mapping = aes(x = chromosome, fill = genotype), position = "dodge")
+p
+```
+
+### Exercise 6
+```{r}
+p<-ggplot(data = SNPs) + 
+  geom_bar(mapping = aes(x = chromosome, fill = genotype), position = "dodge") +
+  facet_wrap(~genotype)
+p
+```
+
+

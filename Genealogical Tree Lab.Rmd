@@ -1,0 +1,12 @@
+---
+title: "Genealogical Tree Lab"
+author: "Alice Zheng"
+date: "3/9/2020"
+output: html_document
+---
+
+### Alice's Family Tree 
+
+![Alice's Family Tree](images/Alice's Tree.png)
+
+

@@ -14,3 +14,6 @@ output: html_document
 
 [Lab 5](Lab-5.html)
 
+Application written in R [@RCoreTeam] using the Shiny framework [@Chang2015].
+
+# REFERENCES

@@ -1,0 +1,16 @@
+---
+title: "index"
+author: "Alice Zheng"
+date: "2/26/2020"
+output: html_document
+---
+### Here are my labs!
+
+[Lab 2](Lab2B.html)
+
+[Lab 3](Lab3.html)
+
+[Lab 4](Lab-4.html)
+
+[Lab 5](Lab-5.html)
+

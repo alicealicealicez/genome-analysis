@@ -15,6 +15,13 @@ bibliography: data/references.bib
 
 [Lab 5](Lab-5.html)
 
+[Lab 7](Lab-7.html)
+
+[Lab 8](Genealogical-Tree-Lab.html)
+
+[Lab 9](Lab 9 COVID-19.html)
+
+
 Application written in R [@RCoreTeam] using the Shiny framework [@Chang2015].
 
 # REFERENCES

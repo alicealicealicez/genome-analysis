@@ -21,7 +21,9 @@ bibliography: data/references.bib
 
 [Lab 9](Lab 9 COVID-19.html)
 
+[Lab 10](Lab-10.html)
 
-Application written in R [@RCoreTeam] using the Shiny framework [@Chang2015].
 
 # REFERENCES
+
+Application written in R [@RCoreTeam] using the Shiny framework [@Chang2015].

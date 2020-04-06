@@ -19,7 +19,7 @@ bibliography: data/references.bib
 
 [Lab 8](Genealogical-Tree-Lab.html)
 
-[Lab 9](Lab 9 COVID-19.html)
+[Lab 9](Lab-9-COVID-19.html)
 
 [Lab 10](Lab-10.html)
 

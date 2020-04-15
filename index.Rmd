@@ -23,6 +23,8 @@ bibliography: data/references.bib
 
 [Lab 10](Lab-10.html)
 
+[Lab 11](https://alicejz.shinyapps.io/lab11/)
+
 
 # REFERENCES
 
